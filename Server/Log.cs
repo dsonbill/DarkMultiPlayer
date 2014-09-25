@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Collections.Generic;
 
 namespace DarkMultiPlayerServer
 {
@@ -9,7 +8,6 @@ namespace DarkMultiPlayerServer
         private static string LogFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs");
         private static string LogFilename = Path.Combine(LogFolder, "dmpserver " + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ".log");
         private static object logLock = new object();
-        private static Queue<string> logQueue = new Queue<string>();
 
         public enum LogLevels
         {
@@ -30,42 +28,16 @@ namespace DarkMultiPlayerServer
             if (level >= Settings.settingsStore.logLevel)
             {
                 string output;
-                string tag;
-
-                if (level == LogLevels.INFO)
-                {
-                    tag = " Server: ";
-                }
-                else
-                {
-                    tag = "[" + level.ToString() + "] Server: ";
-                }
-                
                 if (Settings.settingsStore.useUTCTimeInLog)
                 {
-                    output = "[" + DateTime.UtcNow.ToString("HH:mm:ss") + "]" + tag + message;
+                    output = "[" + DateTime.UtcNow.ToString("HH:mm:ss") + "][" + level.ToString() + "] : " + message;
                 }
                 else
                 {
-                    output = "[" + DateTime.Now.ToString("HH:mm:ss") + "]" + tag + message;
+                    output = "[" + DateTime.Now.ToString("HH:mm:ss") + "][" + level.ToString() + "] : " + message;
                 }
-
-                //Dirty evil flow control hack soup
-                try
-                {
-                    ClientHandler.SendConsoleMessageToAdmins(output);
-                    while (logQueue.Count > 0)
-                    {
-                        string queuedOutput = logQueue.Dequeue();
-                        ClientHandler.SendConsoleMessageToAdmins(queuedOutput);
-                    }
-                }
-                catch
-                {
-                    //If the ClientHandler is not ready yet, queue up the messages instead
-                    logQueue.Enqueue(output);
-                }
-
+                Console.WriteLine(output);
+                ClientHandler.SendConsoleMessageToAdmins(output);
                 try
                 {
                     lock (logLock) {
@@ -74,34 +46,45 @@ namespace DarkMultiPlayerServer
                 }
                 catch (Exception e)
                 {
-                    logQueue.Enqueue("Error writing to log file!, Exception: " + e);
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Error writing to log file!, Exception: " + e);
+                    Console.ForegroundColor = ConsoleColor.Gray;
                 }
             }
         }
 
         public static void Debug(string message)
         {
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             WriteLog(LogLevels.DEBUG, message);
+            Console.ForegroundColor = ConsoleColor.Gray;
         }
 
         public static void Normal(string message)
         {
+            Console.ForegroundColor = ConsoleColor.Gray;
             WriteLog(LogLevels.INFO, message);
         }
 
         public static void Error(string message)
         {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
             WriteLog(LogLevels.ERROR, message);
+            Console.ForegroundColor = ConsoleColor.Gray;
         }
 
         public static void Fatal(string message)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             WriteLog(LogLevels.FATAL, message);
+            Console.ForegroundColor = ConsoleColor.Gray;
         }
 
         public static void ChatMessage(string message)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             WriteLog(LogLevels.CHAT, message);
+            Console.ForegroundColor = ConsoleColor.Gray;
         }
     }
 }

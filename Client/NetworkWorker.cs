@@ -726,6 +726,9 @@ namespace DarkMultiPlayer
                     case ServerMessageType.WARP_CONTROL:
                         HandleWarpControl(message.data);
                         break;
+                    case ServerMessageType.ADMIN_SYSTEM:
+                        AdminSystem.fetch.HandleAdminMessage(message.data);
+                        break;
                     case ServerMessageType.LOCK_SYSTEM:
                         LockSystem.fetch.HandleLockMessage(message.data);
                         break;
