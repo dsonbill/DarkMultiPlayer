@@ -848,7 +848,7 @@ namespace DarkMultiPlayer
                     using (RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(1024))
                     {
                         rsa.PersistKeyInCsp = false;
-                        rsa.FromXmlString(Settings.fetch.playerPrivateKey);
+						rsa.FromXmlString(Settings.fetch.playerPrivateKey);
                         byte[] signature = rsa.SignData(challange, CryptoConfig.CreateFromName("SHA256"));
                         SendHandshakeResponse(signature);
                         state = ClientState.HANDSHAKING;
