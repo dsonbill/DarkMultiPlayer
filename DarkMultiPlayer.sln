@@ -9,10 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonPrinter", "CommonPrinter\CommonPrinter.csproj", "{8914C43C-B13E-4B91-AB42-B36F96E7EEF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoTest", "CryptoTest\CryptoTest.csproj", "{52C69C1A-BA68-44A5-A328-386028C4D526}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VesselPlugin", "VesselPlugin\VesselPlugin.csproj", "{5BDC0ADC-AECF-4A07-96C2-F129C6C188A8}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,14 +19,6 @@ Global
 		{423C5A4B-EA79-450D-BD86-5B46141D58D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{423C5A4B-EA79-450D-BD86-5B46141D58D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{423C5A4B-EA79-450D-BD86-5B46141D58D1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{52C69C1A-BA68-44A5-A328-386028C4D526}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{52C69C1A-BA68-44A5-A328-386028C4D526}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{52C69C1A-BA68-44A5-A328-386028C4D526}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{52C69C1A-BA68-44A5-A328-386028C4D526}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5BDC0ADC-AECF-4A07-96C2-F129C6C188A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5BDC0ADC-AECF-4A07-96C2-F129C6C188A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5BDC0ADC-AECF-4A07-96C2-F129C6C188A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5BDC0ADC-AECF-4A07-96C2-F129C6C188A8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7AD735F5-A076-44D2-97EC-02ECAD827001}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7AD735F5-A076-44D2-97EC-02ECAD827001}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AD735F5-A076-44D2-97EC-02ECAD827001}.Release|Any CPU.ActiveCfg = Release|Any CPU

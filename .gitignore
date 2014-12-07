@@ -3,6 +3,8 @@
 *.userprefs
 Common/bin/*
 Common/obj/*
+CommonPrinter/bin/*
+CommonPrinter/obj/*
 Client/bin/*
 Client/obj/*
 Server/bin/*
